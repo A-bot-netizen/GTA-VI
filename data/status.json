@@ -1,44 +1,44 @@
 {
   "price": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 1274
+    "rows_written": 3998
   },
   "wikipedia": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 930
+    "rows_written": 3998
   },
   "gdelt": {
-    "last_success": null,
-    "ok": false,
-    "error": "429 Client Error: Too Many Requests for url: https://api.gdeltproject.org/api/v2/doc/doc?query=%28%22GTA+VI%22+OR+%22GTA+6%22%29+sourcelang%3Aenglish&mode=timelinevolraw&format=json&startdatetime=20231205000000&enddatetime=20260622235959&timelinesmooth=0",
-    "rows_written": 0
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
+    "ok": true,
+    "error": null,
+    "rows_written": 3998
   },
   "sec": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 0
+    "rows_written": 3998
   },
   "options": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 4
+    "rows_written": 3998
   },
   "polymarket": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 0
+    "rows_written": 3998
   },
   "youtube": {
-    "last_success": "2026-06-22T19:30:39.684942+00:00",
+    "last_success": "2026-06-22T20:04:14.870350+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 14
+    "rows_written": 3998
   }
 }

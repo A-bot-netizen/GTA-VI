@@ -20,41 +20,60 @@ def _is_gta_market(title: str) -> bool:
     return any(p.search(title) for p in _GTA_PATTERNS)
 
 
+def _fetch_gamma_pages(params: dict) -> list[dict]:
+    """Paginate a single Gamma API query, return all raw market dicts."""
+    results = []
+    params = dict(params)  # local copy so we can mutate offset
+    first_page = True
+    while True:
+        if not first_page:
+            time.sleep(_INTER_PAGE_PAUSE)
+        first_page = False
+        try:
+            r = get_with_retry(
+                f"{_GAMMA}/markets", params=params, timeout=30,
+                base_delay=15, label="polymarket/gamma",
+            )
+            page = r.json()
+        except Exception:
+            break
+        if not page:
+            break
+        results.extend(page)
+        if len(page) < params.get("limit", 100):
+            break
+        params["offset"] = params.get("offset", 0) + params.get("limit", 100)
+    return results
+
+
 def _discover_markets() -> list[dict]:
-    """Query Gamma API for all active GTA VI related markets."""
-    markets = []
+    """Query Gamma API for all active GTA VI related markets.
+
+    Three passes (merged + deduplicated):
+    1. Tag slugs from config.POLYMARKET_TAG_SLUGS  (most precise — matches polymarket.com/predictions/<slug>)
+    2. Keyword search for 'GTA' and 'Grand Theft Auto'  (fallback for markets not yet tagged)
+    """
+    candidates: list[dict] = []
+
+    # Pass 1: tag slug lookups
+    for slug in config.POLYMARKET_TAG_SLUGS:
+        time.sleep(_INTER_PAGE_PAUSE)
+        page = _fetch_gamma_pages({"tag_slug": slug, "active": "true", "limit": 100, "offset": 0})
+        candidates.extend(page)
+
+    # Pass 2: keyword search (filtered by title patterns)
     for keyword in ("GTA", "Grand Theft Auto"):
-        params = {"q": keyword, "active": "true", "limit": 100, "offset": 0}
-        first_page = True
-        while True:
-            if not first_page:
-                time.sleep(_INTER_PAGE_PAUSE)
-            first_page = False
+        time.sleep(_INTER_PAGE_PAUSE)
+        page = _fetch_gamma_pages({"q": keyword, "active": "true", "limit": 100, "offset": 0})
+        for m in page:
+            title = m.get("question", m.get("title", ""))
+            if _is_gta_market(title):
+                candidates.append(m)
 
-            try:
-                r = get_with_retry(
-                    f"{_GAMMA}/markets", params=params, timeout=30,
-                    base_delay=15, label="polymarket/gamma",
-                )
-                page = r.json()
-            except Exception:
-                break
-
-            if not page:
-                break
-
-            for m in page:
-                title = m.get("question", m.get("title", ""))
-                if _is_gta_market(title):
-                    markets.append(m)
-
-            if len(page) < params["limit"]:
-                break
-            params["offset"] += params["limit"]
-
+    # Deduplicate by conditionId (or id as fallback)
     seen: set[str] = set()
-    unique = []
-    for m in markets:
+    unique: list[dict] = []
+    for m in candidates:
         cid = m.get("conditionId", m.get("id", ""))
         if cid not in seen:
             seen.add(cid)

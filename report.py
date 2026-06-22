@@ -48,8 +48,8 @@ def _empty_fig(msg: str) -> go.Figure:
     return fig
 
 
-def _div(fig: go.Figure) -> str:
-    return fig.to_html(full_html=False, include_plotlyjs=False)
+def _div(fig: go.Figure, include_plotlyjs: bool | str = False) -> str:
+    return fig.to_html(full_html=False, include_plotlyjs=include_plotlyjs)
 
 
 # ---- Chart builders ----
@@ -521,12 +521,14 @@ def main() -> None:
         ("Options — Put/Call OI & IV", "options", _options_chart),
     ]
     charts = []
-    for title, src, builder in builders:
+    for i, (title, src, builder) in enumerate(builders):
         st = src_status.get(src, {})
+        # First chart injects the Plotly CDN <script> tag so the version always
+        # matches the installed plotly Python package. Subsequent charts omit it.
         charts.append({
             "title": title,
             "source": src,
-            "div": _div(builder(df)),
+            "div": _div(builder(df), include_plotlyjs="cdn" if i == 0 else False),
             "last_updated": _last_date(src),
             "stale": st.get("stale", False),
             "unavailable": not st.get("ok", True),

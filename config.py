@@ -15,6 +15,8 @@ YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "")
 
 # Empty → sources/polymarket.py discovers all active GTA VI markets live
 POLYMARKET_SLUGS: list[str] = []
+# Tag slugs from polymarket.com/predictions/<slug> — fetched directly via Gamma API
+POLYMARKET_TAG_SLUGS: list[str] = ["gta-vi"]
 
 GDELT_QUERY = '("GTA VI" OR "GTA 6")'
 GDELT_BROADEN = False
