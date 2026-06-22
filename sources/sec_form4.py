@@ -1,19 +1,18 @@
 """SEC Form 4 insider transaction collector for TTWO."""
 import time
-import requests
 import pandas as pd
 from lxml import etree
 import config
+from ._retry import get_with_retry
 
 _HEADERS = {"User-Agent": config.SEC_USER_AGENT, "Accept-Encoding": "gzip, deflate"}
 _TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
 _SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik}.json"
-_FILING_BASE = "https://www.sec.gov/Archives/edgar/data/{cik}/{accession_clean}/"
+_INTER_FILING_PAUSE = 0.15  # seconds between filing XML requests (~6 req/sec, well within 10/s limit)
 
 
 def _get_cik(ticker: str) -> str:
-    r = requests.get(_TICKERS_URL, headers=_HEADERS, timeout=30)
-    r.raise_for_status()
+    r = get_with_retry(_TICKERS_URL, headers=_HEADERS, timeout=30, base_delay=20, label="sec/tickers")
     tickers = r.json()
     for entry in tickers.values():
         if entry["ticker"].upper() == ticker.upper():
@@ -23,8 +22,7 @@ def _get_cik(ticker: str) -> str:
 
 def _get_form4_filings(cik: str) -> list[dict]:
     url = _SUBMISSIONS_URL.format(cik=cik)
-    r = requests.get(url, headers=_HEADERS, timeout=30)
-    r.raise_for_status()
+    r = get_with_retry(url, headers=_HEADERS, timeout=30, base_delay=20, label="sec/submissions")
     data = r.json()
     filings = data.get("filings", {}).get("recent", {})
 
@@ -46,8 +44,6 @@ def _parse_form4_xml(xml_bytes: bytes, filing_date: str) -> list[dict]:
         root = etree.fromstring(xml_bytes)
     except etree.XMLSyntaxError:
         return rows
-
-    ns = {"": ""}  # Form 4 XML typically has no namespace
 
     def find(el, tag):
         result = el.find(tag)
@@ -71,21 +67,13 @@ def _parse_form4_xml(xml_bytes: bytes, filing_date: str) -> list[dict]:
         except (ValueError, TypeError):
             continue
 
-        usd = round(shares * price, 2)
-        is_sale = code == "S"
-        is_plan = bool(plan_flag)
-
-        rows.append(
-            {
-                "filing_date": filing_date,
-                "transaction_code": code,
-                "shares": shares,
-                "price": price,
-                "usd": usd,
-                "is_sale": is_sale,
-                "is_plan": is_plan,
-            }
-        )
+        rows.append({
+            "filing_date": filing_date,
+            "transaction_code": code,
+            "usd": round(shares * price, 2),
+            "is_sale": code == "S",
+            "is_plan": bool(plan_flag),
+        })
 
     return rows
 
@@ -114,9 +102,8 @@ def collect(existing: pd.DataFrame) -> list[dict]:
             f"/{acc_clean}/{filing['doc']}"
         )
         try:
-            time.sleep(0.11)  # SEC fair-access: ~10 req/sec
-            r = requests.get(xml_url, headers=_HEADERS, timeout=30)
-            r.raise_for_status()
+            time.sleep(_INTER_FILING_PAUSE)
+            r = get_with_retry(xml_url, headers=_HEADERS, timeout=30, base_delay=20, label="sec/filing")
             transactions = _parse_form4_xml(r.content, filing_date)
         except Exception:
             continue
@@ -126,37 +113,13 @@ def collect(existing: pd.DataFrame) -> list[dict]:
 
         sales = [t for t in transactions if t["is_sale"]]
         total_usd = round(sum(t["usd"] for t in sales), 2)
-        plan_usd = round(sum(t["usd"] for t in sales if t["is_plan"]), 2)
         discr_usd = round(sum(t["usd"] for t in sales if not t["is_plan"]), 2)
-        filing_count = len(transactions)
 
         note = filing["accession"]
-
         output += [
-            {
-                "obs_date": filing_date,
-                "source": "sec",
-                "metric": "insider_sale_usd",
-                "value": total_usd,
-                "unit": "usd",
-                "note": note,
-            },
-            {
-                "obs_date": filing_date,
-                "source": "sec",
-                "metric": "insider_filing_count",
-                "value": filing_count,
-                "unit": "count",
-                "note": note,
-            },
-            {
-                "obs_date": filing_date,
-                "source": "sec",
-                "metric": "insider_discretionary_usd",
-                "value": discr_usd,
-                "unit": "usd",
-                "note": note,
-            },
+            {"obs_date": filing_date, "source": "sec", "metric": "insider_sale_usd", "value": total_usd, "unit": "usd", "note": note},
+            {"obs_date": filing_date, "source": "sec", "metric": "insider_filing_count", "value": len(transactions), "unit": "count", "note": note},
+            {"obs_date": filing_date, "source": "sec", "metric": "insider_discretionary_usd", "value": discr_usd, "unit": "usd", "note": note},
         ]
 
     return output

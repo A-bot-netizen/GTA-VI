@@ -1,12 +1,16 @@
 """Polymarket odds collector — discovers all active GTA VI markets live."""
-import requests
-import pandas as pd
-from datetime import date, timedelta
+import time
 import re
+import pandas as pd
+from datetime import date
 import config
+from ._retry import get_with_retry
 
 _GAMMA = "https://gamma-api.polymarket.com"
 _CLOB = "https://clob.polymarket.com"
+_INTER_PAGE_PAUSE = 2   # seconds between Gamma pagination requests
+_INTER_MARKET_PAUSE = 3  # seconds between CLOB price-history requests
+
 _GTA_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
     r"GTA\s*(VI|6)", r"Grand Theft Auto\s*(VI|6)", r"Rockstar.*GTA", r"GTA.*launch",
 ]]
@@ -21,10 +25,17 @@ def _discover_markets() -> list[dict]:
     markets = []
     for keyword in ("GTA", "Grand Theft Auto"):
         params = {"q": keyword, "active": "true", "limit": 100, "offset": 0}
+        first_page = True
         while True:
+            if not first_page:
+                time.sleep(_INTER_PAGE_PAUSE)
+            first_page = False
+
             try:
-                r = requests.get(f"{_GAMMA}/markets", params=params, timeout=30)
-                r.raise_for_status()
+                r = get_with_retry(
+                    f"{_GAMMA}/markets", params=params, timeout=30,
+                    base_delay=15, label="polymarket/gamma",
+                )
                 page = r.json()
             except Exception:
                 break
@@ -41,8 +52,7 @@ def _discover_markets() -> list[dict]:
                 break
             params["offset"] += params["limit"]
 
-    # Deduplicate by conditionId
-    seen = set()
+    seen: set[str] = set()
     unique = []
     for m in markets:
         cid = m.get("conditionId", m.get("id", ""))
@@ -53,39 +63,33 @@ def _discover_markets() -> list[dict]:
 
 
 def _get_yes_token_id(market: dict) -> str | None:
-    """Extract the Yes-outcome token ID from a market record."""
     tokens = market.get("tokens", [])
     for token in tokens:
-        outcome = token.get("outcome", "").lower()
-        if outcome == "yes":
+        if token.get("outcome", "").lower() == "yes":
             return token.get("token_id") or token.get("tokenId")
-    # Fallback: first token if no outcome label
     if tokens:
         return tokens[0].get("token_id") or tokens[0].get("tokenId")
     return None
 
 
 def _fetch_price_history(token_id: str, start: str) -> list[tuple[str, float]]:
-    start_ts = int(
-        pd.Timestamp(start).timestamp()
-    )
-    end_ts = int(pd.Timestamp(date.today().isoformat()).timestamp())
     params = {
         "market": token_id,
-        "startTs": start_ts,
-        "endTs": end_ts,
-        "fidelity": 1440,  # 1-day buckets (minutes per bucket)
+        "startTs": int(pd.Timestamp(start).timestamp()),
+        "endTs": int(pd.Timestamp(date.today().isoformat()).timestamp()),
+        "fidelity": 1440,
     }
     try:
-        r = requests.get(f"{_CLOB}/prices-history", params=params, timeout=30)
-        r.raise_for_status()
+        r = get_with_retry(
+            f"{_CLOB}/prices-history", params=params, timeout=30,
+            base_delay=15, label="polymarket/clob",
+        )
         data = r.json()
     except Exception:
         return []
 
-    history = data.get("history", [])
     results = []
-    for point in history:
+    for point in data.get("history", []):
         ts = point.get("t")
         price = point.get("p")
         if ts is not None and price is not None:
@@ -108,7 +112,10 @@ def collect(existing: pd.DataFrame) -> list[dict]:
     markets = _discover_markets()
     rows: list[dict] = []
 
-    for market in markets:
+    for i, market in enumerate(markets):
+        if i > 0:
+            time.sleep(_INTER_MARKET_PAUSE)
+
         title = market.get("question", market.get("title", "unknown"))
         slug = market.get("slug", market.get("conditionId", "unknown"))
         metric = _slug_to_metric(slug)
@@ -124,17 +131,14 @@ def collect(existing: pd.DataFrame) -> list[dict]:
         )
         start = known if known else config.BACKFILL_START_DATE
 
-        history = _fetch_price_history(token_id, start)
-        for obs, prob in history:
-            rows.append(
-                {
-                    "obs_date": obs,
-                    "source": "polymarket",
-                    "metric": metric,
-                    "value": prob,
-                    "unit": "prob",
-                    "note": title[:120],
-                }
-            )
+        for obs, prob in _fetch_price_history(token_id, start):
+            rows.append({
+                "obs_date": obs,
+                "source": "polymarket",
+                "metric": metric,
+                "value": prob,
+                "unit": "prob",
+                "note": title[:120],
+            })
 
     return rows
