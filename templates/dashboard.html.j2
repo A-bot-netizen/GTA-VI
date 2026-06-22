@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TTWO / GTA VI Hype Tracker</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e0e6f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.5}
+
+/* Header */
+header{background:#161b27;border-bottom:1px solid #21293d;padding:20px 28px}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+h1{font-size:1.35rem;font-weight:700;color:#f0f6ff;letter-spacing:-.01em}
+.hdr-meta{font-size:.72rem;color:#556070;margin-top:3px}
+.hdr-right{display:flex;gap:28px;align-items:flex-start}
+.price-block .price-val{font-size:1.7rem;font-weight:700;color:#f0f6ff}
+.price-block .price-pct{font-size:.9rem;margin-top:2px}
+.up{color:#3fb950}.down{color:#f85149}.neutral{color:#8b949e}
+.countdown{text-align:right}
+.cd-val{font-size:2rem;font-weight:700;color:#f0a832;line-height:1}
+.cd-lbl{font-size:.7rem;color:#556070;margin-top:3px}
+
+/* Status badges */
+.badges{display:flex;flex-wrap:wrap;gap:6px;padding:12px 28px;background:#0d1117;border-bottom:1px solid #21293d}
+.badge{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:4px}
+.b-ok{background:#0d2119;color:#3fb950;border:1px solid #1a3d2a}
+.b-stale{background:#2a1e05;color:#f0a832;border:1px solid #4a340a}
+.b-err{background:#2a0d0d;color:#f85149;border:1px solid #4a1a1a}
+.b-skip{background:#161b27;color:#4a5568;border:1px solid #21293d}
+
+/* Main layout */
+main{max-width:1380px;margin:0 auto;padding:20px 28px}
+
+/* Chart cards */
+.card{background:#161b27;border:1px solid #21293d;border-radius:8px;margin-bottom:20px;overflow:hidden}
+.card-hdr{padding:14px 18px 0}
+.card-title{font-size:.95rem;font-weight:600;color:#c9d1d9}
+.card-meta{font-size:.72rem;color:#4a5568;margin-top:3px;display:flex;align-items:center;gap:8px}
+.card-body{padding:0 2px 2px}
+
+/* In-line badges next to chart meta */
+.badge-sm{font-size:.63rem;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:3px}
+
+/* Latest table */
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.tbl th{text-align:left;padding:9px 12px;background:#1a2030;color:#8b949e;font-weight:500;border-bottom:1px solid #21293d}
+.tbl td{padding:7px 12px;border-bottom:1px solid #1a2030;color:#c9d1d9}
+.tbl tr:hover td{background:#1a2030}
+.tbl td:first-child{color:#6e7f9e;font-family:monospace}
+.tbl td:nth-child(2){font-family:monospace;font-size:.8rem}
+
+/* Weekly summary */
+.summary{background:#090c14;border:1px solid #21293d;border-radius:8px;padding:18px 20px;font-family:"JetBrains Mono","Fira Code","Cascadia Code",monospace;font-size:.78rem;line-height:1.65;color:#8b949e;white-space:pre;overflow-x:auto}
+
+.sec-title{font-size:.78rem;font-weight:600;color:#4a5568;text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px}
+
+@media(max-width:640px){
+  header,.badges,main{padding-left:14px;padding-right:14px}
+  .hdr-right{flex-direction:column;gap:12px}
+  .countdown{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-top">
+    <div>
+      <h1>TTWO / GTA VI Hype Tracker</h1>
+      <div class="hdr-meta">Last updated: {{ last_updated }} &nbsp;·&nbsp; Data since {{ backfill_start }}</div>
+    </div>
+    <div class="hdr-right">
+      <div class="price-block">
+        {% if price_available %}
+          <div class="price-val">{{ price_str }}</div>
+          <div class="price-pct {{ 'up' if pct_positive else 'down' }}">
+            {{ pct_str }} vs entry {{ entry_price_str }}
+          </div>
+        {% else %}
+          <div class="price-val neutral">—</div>
+          <div class="price-pct neutral">Price unavailable</div>
+        {% endif %}
+      </div>
+      <div class="countdown">
+        <div class="cd-val">{{ days_to_launch }}</div>
+        <div class="cd-lbl">days to launch</div>
+        <div class="cd-lbl">{{ launch_date }}</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="badges">
+  {% for src, st in source_status.items() %}
+    {% if st.get("skipped") %}
+      <span class="badge b-skip">{{ src }} — not configured</span>
+    {% elif not st.get("ok", true) %}
+      <span class="badge b-err">{{ src }} — unavailable</span>
+    {% elif st.get("stale") %}
+      <span class="badge b-stale">{{ src }} — stale · {{ st.get("rows_written", 0) }} rows</span>
+    {% else %}
+      <span class="badge b-ok">{{ src }} ✓ {{ st.get("rows_written", 0) }} rows</span>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<main>
+
+{% for chart in charts %}
+<div class="card">
+  <div class="card-hdr">
+    <div class="card-title">{{ chart.title }}</div>
+    <div class="card-meta">
+      <span>{{ chart.source }}</span>
+      {% if chart.last_updated and chart.last_updated != "—" %}
+        <span>· updated {{ chart.last_updated }}</span>
+      {% endif %}
+      {% if chart.stale %}
+        <span class="badge-sm b-stale">stale</span>
+      {% endif %}
+      {% if chart.unavailable and not chart.skipped %}
+        <span class="badge-sm b-err">unavailable</span>
+      {% endif %}
+      {% if chart.skipped %}
+        <span class="badge-sm b-skip">not configured</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card-body">{{ chart.div | safe }}</div>
+</div>
+{% endfor %}
+
+<div class="sec-title">Latest snapshot</div>
+<div class="card">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Source</th><th>Metric</th><th>Value</th><th>Unit</th><th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in latest_rows %}
+      <tr>
+        <td>{{ row.source }}</td>
+        <td>{{ row.metric }}</td>
+        <td>{{ row.value }}</td>
+        <td>{{ row.unit }}</td>
+        <td>{{ row.date }}</td>
+      </tr>
+      {% endfor %}
+      {% if not latest_rows %}
+      <tr><td colspan="5" style="color:#4a5568;text-align:center;padding:20px">No data yet — run collect.py</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div class="sec-title">Weekly update (copy-paste)</div>
+<div class="summary">{{ weekly_summary }}</div>
+
+</main>
+</body>
+</html>
