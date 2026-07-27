@@ -6360,8 +6360,9 @@ obs_date,source,metric,value,unit,note
 2026-07-20,options,iv_near_near,51.27,pct,exp=2026-07-24 atm±10%
 2026-07-20,options,put_call_oi_launch_bracket,0.6106,ratio,exp=2026-11-20
 2026-07-20,options,put_call_oi_near,1.4564,ratio,exp=2026-07-24
-2026-07-20,price,close,241.15,usd,
-2026-07-20,price,pct_vs_entry,-3.54,pct,entry=250.0
+2026-07-20,price,close,238.98,usd,
+2026-07-20,price,pct_vs_entry,-4.408,pct,entry=250.0
+2026-07-20,wikipedia,pageviews,6424.0,count,Grand_Theft_Auto_VI
 2026-07-20,youtube,EiQEBYDox_k_like_view_ratio,0.074867,ratio,Grand Theft Auto VI: Official Cover Art Reveal
 2026-07-20,youtube,EiQEBYDox_k_likes,1056950.0,count,Grand Theft Auto VI: Official Cover Art Reveal
 2026-07-20,youtube,EiQEBYDox_k_views,14117787.0,count,Grand Theft Auto VI: Official Cover Art Reveal
@@ -6376,3 +6377,37 @@ obs_date,source,metric,value,unit,note
 2026-07-20,youtube,VQRLujxTm3c_views,175645280.0,count,Grand Theft Auto VI Trailer 2
 2026-07-20,youtube,channel_subs,13300000.0,count,@RockstarGames
 2026-07-20,youtube,channel_views,1669045881.0,count,@RockstarGames
+2026-07-21,price,close,235.93,usd,
+2026-07-21,price,pct_vs_entry,-5.628,pct,entry=250.0
+2026-07-21,wikipedia,pageviews,6409.0,count,Grand_Theft_Auto_VI
+2026-07-22,price,close,233.58,usd,
+2026-07-22,price,pct_vs_entry,-6.568,pct,entry=250.0
+2026-07-22,wikipedia,pageviews,6261.0,count,Grand_Theft_Auto_VI
+2026-07-23,price,close,230.25,usd,
+2026-07-23,price,pct_vs_entry,-7.9,pct,entry=250.0
+2026-07-23,wikipedia,pageviews,6233.0,count,Grand_Theft_Auto_VI
+2026-07-24,price,close,231.65,usd,
+2026-07-24,price,pct_vs_entry,-7.34,pct,entry=250.0
+2026-07-24,wikipedia,pageviews,6327.0,count,Grand_Theft_Auto_VI
+2026-07-25,wikipedia,pageviews,6129.0,count,Grand_Theft_Auto_VI
+2026-07-26,wikipedia,pageviews,6787.0,count,Grand_Theft_Auto_VI
+2026-07-27,options,iv_near_launch_bracket,52.78,pct,exp=2026-11-20 atm±10%
+2026-07-27,options,iv_near_near,51.19,pct,exp=2026-07-31 atm±10%
+2026-07-27,options,put_call_oi_launch_bracket,0.7247,ratio,exp=2026-11-20
+2026-07-27,options,put_call_oi_near,6.87,ratio,exp=2026-07-31
+2026-07-27,price,close,240.46,usd,
+2026-07-27,price,pct_vs_entry,-3.816,pct,entry=250.0
+2026-07-27,youtube,EiQEBYDox_k_like_view_ratio,0.074289,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,EiQEBYDox_k_likes,1058119.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,EiQEBYDox_k_views,14243311.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,INjHGpMRjRA_like_view_ratio,0.068815,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,INjHGpMRjRA_likes,256377.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,INjHGpMRjRA_views,3725596.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-07-27,youtube,QdBZY2fkU-0_like_view_ratio,0.043218,ratio,Grand Theft Auto VI Trailer 1
+2026-07-27,youtube,QdBZY2fkU-0_likes,12445963.0,count,Grand Theft Auto VI Trailer 1
+2026-07-27,youtube,QdBZY2fkU-0_views,287982302.0,count,Grand Theft Auto VI Trailer 1
+2026-07-27,youtube,VQRLujxTm3c_like_view_ratio,0.037354,ratio,Grand Theft Auto VI Trailer 2
+2026-07-27,youtube,VQRLujxTm3c_likes,6580200.0,count,Grand Theft Auto VI Trailer 2
+2026-07-27,youtube,VQRLujxTm3c_views,176156420.0,count,Grand Theft Auto VI Trailer 2
+2026-07-27,youtube,channel_subs,13300000.0,count,@RockstarGames
+2026-07-27,youtube,channel_views,1671310303.0,count,@RockstarGames
