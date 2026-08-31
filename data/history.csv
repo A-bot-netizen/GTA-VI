@@ -6631,8 +6631,9 @@ obs_date,source,metric,value,unit,note
 2026-08-24,options,iv_near_near,58.78,pct,exp=2026-08-28 atm±10%
 2026-08-24,options,put_call_oi_launch_bracket,0.1799,ratio,exp=2026-11-20
 2026-08-24,options,put_call_oi_near,0.8045,ratio,exp=2026-08-28
-2026-08-24,price,close,241.13,usd,
-2026-08-24,price,pct_vs_entry,-3.548,pct,entry=250.0
+2026-08-24,price,close,233.5,usd,
+2026-08-24,price,pct_vs_entry,-6.6,pct,entry=250.0
+2026-08-24,wikipedia,pageviews,21113.0,count,Grand_Theft_Auto_VI
 2026-08-24,youtube,EiQEBYDox_k_like_view_ratio,0.072163,ratio,Grand Theft Auto VI: Official Cover Art Reveal
 2026-08-24,youtube,EiQEBYDox_k_likes,1063491.0,count,Grand Theft Auto VI: Official Cover Art Reveal
 2026-08-24,youtube,EiQEBYDox_k_views,14737437.0,count,Grand Theft Auto VI: Official Cover Art Reveal
@@ -6653,3 +6654,62 @@ obs_date,source,metric,value,unit,note
 2026-08-24,youtube,qq76pQsI1iw_like_view_ratio,0.063788,ratio,Grand Theft Auto VI: An Extended Look Coming August 27
 2026-08-24,youtube,qq76pQsI1iw_likes,320511.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
 2026-08-24,youtube,qq76pQsI1iw_views,5024602.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-25,price,close,232.93,usd,
+2026-08-25,price,pct_vs_entry,-6.828,pct,entry=250.0
+2026-08-25,wikipedia,pageviews,19501.0,count,Grand_Theft_Auto_VI
+2026-08-26,price,close,233.45,usd,
+2026-08-26,price,pct_vs_entry,-6.62,pct,entry=250.0
+2026-08-26,wikipedia,pageviews,25350.0,count,Grand_Theft_Auto_VI
+2026-08-27,price,close,233.0,usd,
+2026-08-27,price,pct_vs_entry,-6.8,pct,entry=250.0
+2026-08-27,wikipedia,pageviews,48544.0,count,Grand_Theft_Auto_VI
+2026-08-28,wikipedia,pageviews,96567.0,count,Grand_Theft_Auto_VI
+2026-08-29,wikipedia,pageviews,53640.0,count,Grand_Theft_Auto_VI
+2026-08-30,wikipedia,pageviews,42843.0,count,Grand_Theft_Auto_VI
+2026-08-31,options,iv_near_launch_bracket,52.51,pct,exp=2026-11-20 atm±10%
+2026-08-31,options,iv_near_near,53.09,pct,exp=2026-09-04 atm±10%
+2026-08-31,options,put_call_oi_launch_bracket,0.1695,ratio,exp=2026-11-20
+2026-08-31,options,put_call_oi_near,0.4973,ratio,exp=2026-09-04
+2026-08-31,price,close,219.03,usd,
+2026-08-31,price,pct_vs_entry,-12.388,pct,entry=250.0
+2026-08-31,youtube,53C6gUqRpK4_like_view_ratio,0.024984,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,53C6gUqRpK4_likes,51567.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,53C6gUqRpK4_views,2064018.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,EiQEBYDox_k_like_view_ratio,0.070474,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,EiQEBYDox_k_likes,1068438.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,EiQEBYDox_k_views,15160744.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,GVTE_MuInQg_like_view_ratio,0.038829,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,GVTE_MuInQg_likes,40114.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,GVTE_MuInQg_views,1033099.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,INjHGpMRjRA_like_view_ratio,0.062747,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,INjHGpMRjRA_likes,268626.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,INjHGpMRjRA_views,4281106.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-08-31,youtube,L-9NI3mHZVo_like_view_ratio,0.029798,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,L-9NI3mHZVo_likes,20453.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,L-9NI3mHZVo_views,686395.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,MJOrsRRa9GM_like_view_ratio,0.010088,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,MJOrsRRa9GM_likes,54893.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,MJOrsRRa9GM_views,5441611.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,QdBZY2fkU-0_like_view_ratio,0.042455,ratio,Grand Theft Auto VI Trailer 1
+2026-08-31,youtube,QdBZY2fkU-0_likes,12469619.0,count,Grand Theft Auto VI Trailer 1
+2026-08-31,youtube,QdBZY2fkU-0_views,293714879.0,count,Grand Theft Auto VI Trailer 1
+2026-08-31,youtube,VQRLujxTm3c_like_view_ratio,0.036432,ratio,Grand Theft Auto VI Trailer 2
+2026-08-31,youtube,VQRLujxTm3c_likes,6607970.0,count,Grand Theft Auto VI Trailer 2
+2026-08-31,youtube,VQRLujxTm3c_views,181378141.0,count,Grand Theft Auto VI Trailer 2
+2026-08-31,youtube,Xzxv75FjMJk_like_view_ratio,0.047,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,Xzxv75FjMJk_likes,15229.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,Xzxv75FjMJk_views,324021.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,YmzCydc4qOk_like_view_ratio,0.02956,ratio,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,YmzCydc4qOk_likes,116938.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,YmzCydc4qOk_views,3955895.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,channel_subs,13700000.0,count,@RockstarGames
+2026-08-31,youtube,channel_views,1734242148.0,count,@RockstarGames
+2026-08-31,youtube,mAfR_ybf5WM_like_view_ratio,0.028851,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,mAfR_ybf5WM_likes,31610.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,mAfR_ybf5WM_views,1095645.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-08-31,youtube,qq76pQsI1iw_like_view_ratio,0.037429,ratio,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,qq76pQsI1iw_likes,350306.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,qq76pQsI1iw_views,9359242.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-08-31,youtube,tJbzMqJGH4k_like_view_ratio,0.088308,ratio,Grand Theft Auto VI: An Extended Look
+2026-08-31,youtube,tJbzMqJGH4k_likes,1439714.0,count,Grand Theft Auto VI: An Extended Look
+2026-08-31,youtube,tJbzMqJGH4k_views,16303238.0,count,Grand Theft Auto VI: An Extended Look
