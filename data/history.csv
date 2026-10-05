@@ -6980,14 +6980,15 @@ obs_date,source,metric,value,unit,note
 2026-09-27,gdelt,media_tone,-1.0082,ratio,GDELT precomputed average tone (~-10..+10)
 2026-09-27,gdelt,media_volume,2.0,count,GDELT DOC 2.0 raw article count
 2026-09-27,wikipedia,pageviews,9837.0,count,Grand_Theft_Auto_VI
-2026-09-28,gdelt,media_tone,-0.631,ratio,GDELT precomputed average tone (~-10..+10)
-2026-09-28,gdelt,media_volume,11.0,count,GDELT DOC 2.0 raw article count
+2026-09-28,gdelt,media_tone,-0.3335,ratio,GDELT precomputed average tone (~-10..+10)
+2026-09-28,gdelt,media_volume,18.0,count,GDELT DOC 2.0 raw article count
 2026-09-28,options,iv_near_launch_bracket,51.95,pct,exp=2026-11-20 atm±10%
 2026-09-28,options,iv_near_near,49.47,pct,exp=2026-10-02 atm±10%
 2026-09-28,options,put_call_oi_launch_bracket,0.2172,ratio,exp=2026-11-20
 2026-09-28,options,put_call_oi_near,0.4936,ratio,exp=2026-10-02
 2026-09-28,price,close,202.35,usd,
 2026-09-28,price,pct_vs_entry,-19.06,pct,entry=250.0
+2026-09-28,wikipedia,pageviews,9984.0,count,Grand_Theft_Auto_VI
 2026-09-28,youtube,53C6gUqRpK4_like_view_ratio,0.022228,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
 2026-09-28,youtube,53C6gUqRpK4_likes,61124.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
 2026-09-28,youtube,53C6gUqRpK4_views,2749829.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
@@ -7029,3 +7030,72 @@ obs_date,source,metric,value,unit,note
 2026-09-28,youtube,tJbzMqJGH4k_like_view_ratio,0.055389,ratio,Grand Theft Auto VI: An Extended Look
 2026-09-28,youtube,tJbzMqJGH4k_likes,1636277.0,count,Grand Theft Auto VI: An Extended Look
 2026-09-28,youtube,tJbzMqJGH4k_views,29541461.0,count,Grand Theft Auto VI: An Extended Look
+2026-09-29,gdelt,media_tone,0.7412,ratio,GDELT precomputed average tone (~-10..+10)
+2026-09-29,gdelt,media_volume,15.0,count,GDELT DOC 2.0 raw article count
+2026-09-29,price,close,202.78,usd,
+2026-09-29,price,pct_vs_entry,-18.888,pct,entry=250.0
+2026-09-29,wikipedia,pageviews,9757.0,count,Grand_Theft_Auto_VI
+2026-09-30,gdelt,media_tone,-1.2026,ratio,GDELT precomputed average tone (~-10..+10)
+2026-09-30,gdelt,media_volume,13.0,count,GDELT DOC 2.0 raw article count
+2026-09-30,price,close,207.5,usd,
+2026-09-30,price,pct_vs_entry,-17.0,pct,entry=250.0
+2026-09-30,wikipedia,pageviews,10301.0,count,Grand_Theft_Auto_VI
+2026-10-01,gdelt,media_tone,0.013,ratio,GDELT precomputed average tone (~-10..+10)
+2026-10-01,gdelt,media_volume,24.0,count,GDELT DOC 2.0 raw article count
+2026-10-01,price,close,203.62,usd,
+2026-10-01,price,pct_vs_entry,-18.552,pct,entry=250.0
+2026-10-01,wikipedia,pageviews,10438.0,count,Grand_Theft_Auto_VI
+2026-10-02,gdelt,media_tone,1.2475,ratio,GDELT precomputed average tone (~-10..+10)
+2026-10-02,gdelt,media_volume,2.0,count,GDELT DOC 2.0 raw article count
+2026-10-02,price,close,202.73,usd,
+2026-10-02,price,pct_vs_entry,-18.908,pct,entry=250.0
+2026-10-02,wikipedia,pageviews,10694.0,count,Grand_Theft_Auto_VI
+2026-10-03,wikipedia,pageviews,10524.0,count,Grand_Theft_Auto_VI
+2026-10-04,wikipedia,pageviews,11260.0,count,Grand_Theft_Auto_VI
+2026-10-05,options,iv_near_launch_bracket,51.7,pct,exp=2026-11-20 atm±10%
+2026-10-05,options,iv_near_near,46.11,pct,exp=2026-10-09 atm±10%
+2026-10-05,options,put_call_oi_launch_bracket,0.2385,ratio,exp=2026-11-20
+2026-10-05,options,put_call_oi_near,0.8901,ratio,exp=2026-10-09
+2026-10-05,price,close,203.46,usd,
+2026-10-05,price,pct_vs_entry,-18.616,pct,entry=250.0
+2026-10-05,youtube,53C6gUqRpK4_like_view_ratio,0.021811,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,53C6gUqRpK4_likes,62708.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,53C6gUqRpK4_views,2875000.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,EiQEBYDox_k_like_view_ratio,0.068934,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,EiQEBYDox_k_likes,1070398.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,EiQEBYDox_k_views,15527935.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,GVTE_MuInQg_like_view_ratio,0.031883,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,GVTE_MuInQg_likes,48374.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,GVTE_MuInQg_views,1517224.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,INjHGpMRjRA_like_view_ratio,0.061946,ratio,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,INjHGpMRjRA_likes,270761.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,INjHGpMRjRA_views,4370900.0,count,Grand Theft Auto VI: Official Cover Art Reveal
+2026-10-05,youtube,L-9NI3mHZVo_like_view_ratio,0.026337,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,L-9NI3mHZVo_likes,25990.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,L-9NI3mHZVo_views,986842.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,MJOrsRRa9GM_like_view_ratio,0.008,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,MJOrsRRa9GM_likes,72845.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,MJOrsRRa9GM_views,9105751.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,QdBZY2fkU-0_like_view_ratio,0.042004,ratio,Grand Theft Auto VI Trailer 1
+2026-10-05,youtube,QdBZY2fkU-0_likes,12478559.0,count,Grand Theft Auto VI Trailer 1
+2026-10-05,youtube,QdBZY2fkU-0_views,297078765.0,count,Grand Theft Auto VI Trailer 1
+2026-10-05,youtube,VQRLujxTm3c_like_view_ratio,0.036003,ratio,Grand Theft Auto VI Trailer 2
+2026-10-05,youtube,VQRLujxTm3c_likes,6616267.0,count,Grand Theft Auto VI Trailer 2
+2026-10-05,youtube,VQRLujxTm3c_views,183772321.0,count,Grand Theft Auto VI Trailer 2
+2026-10-05,youtube,Xzxv75FjMJk_like_view_ratio,0.040713,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,Xzxv75FjMJk_likes,19401.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,Xzxv75FjMJk_views,476525.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,YmzCydc4qOk_like_view_ratio,0.029241,ratio,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,YmzCydc4qOk_likes,118658.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,YmzCydc4qOk_views,4057929.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,channel_subs,13800000.0,count,@RockstarGames
+2026-10-05,youtube,channel_views,1776839053.0,count,@RockstarGames
+2026-10-05,youtube,mAfR_ybf5WM_like_view_ratio,0.026545,ratio,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,mAfR_ybf5WM_likes,46577.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,mAfR_ybf5WM_views,1754613.0,count,Grand Theft Auto VI: An Extended Look — Now Playing
+2026-10-05,youtube,qq76pQsI1iw_like_view_ratio,0.035535,ratio,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,qq76pQsI1iw_likes,353381.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,qq76pQsI1iw_views,9944463.0,count,Grand Theft Auto VI: An Extended Look Coming August 27
+2026-10-05,youtube,tJbzMqJGH4k_like_view_ratio,0.054311,ratio,Grand Theft Auto VI: An Extended Look
+2026-10-05,youtube,tJbzMqJGH4k_likes,1647841.0,count,Grand Theft Auto VI: An Extended Look
+2026-10-05,youtube,tJbzMqJGH4k_views,30340997.0,count,Grand Theft Auto VI: An Extended Look

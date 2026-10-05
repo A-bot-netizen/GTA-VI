@@ -1,42 +1,42 @@
 {
   "price": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 10
   },
   "wikipedia": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 7
   },
   "gdelt": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
-    "rows_written": 70
+    "rows_written": 8
   },
   "sec": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 0
   },
   "options": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 4
   },
   "polymarket": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 0
   },
   "youtube": {
-    "last_success": "2026-09-28T20:01:10.030037+00:00",
+    "last_success": "2026-10-05T21:09:51.486375+00:00",
     "ok": true,
     "error": null,
     "rows_written": 41
